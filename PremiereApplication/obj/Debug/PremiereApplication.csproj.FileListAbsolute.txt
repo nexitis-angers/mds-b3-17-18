@@ -1,0 +1,6 @@
+C:\Workspace\Formation\MDS-B3\PremiereApplication\bin\Debug\PremiereApplication.exe.config
+C:\Workspace\Formation\MDS-B3\PremiereApplication\bin\Debug\PremiereApplication.exe
+C:\Workspace\Formation\MDS-B3\PremiereApplication\bin\Debug\PremiereApplication.pdb
+C:\Workspace\Formation\MDS-B3\PremiereApplication\obj\Debug\PremiereApplication.csprojResolveAssemblyReference.cache
+C:\Workspace\Formation\MDS-B3\PremiereApplication\obj\Debug\PremiereApplication.exe
+C:\Workspace\Formation\MDS-B3\PremiereApplication\obj\Debug\PremiereApplication.pdb

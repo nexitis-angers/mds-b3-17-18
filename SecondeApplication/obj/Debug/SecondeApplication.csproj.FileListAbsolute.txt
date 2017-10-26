@@ -1,0 +1,7 @@
+C:\Workspace\Formation\MDS-B3\SecondeApplication\bin\Debug\SecondeApplication.exe.config
+C:\Workspace\Formation\MDS-B3\SecondeApplication\bin\Debug\clients.csv
+C:\Workspace\Formation\MDS-B3\SecondeApplication\bin\Debug\SecondeApplication.exe
+C:\Workspace\Formation\MDS-B3\SecondeApplication\bin\Debug\SecondeApplication.pdb
+C:\Workspace\Formation\MDS-B3\SecondeApplication\obj\Debug\SecondeApplication.csprojResolveAssemblyReference.cache
+C:\Workspace\Formation\MDS-B3\SecondeApplication\obj\Debug\SecondeApplication.exe
+C:\Workspace\Formation\MDS-B3\SecondeApplication\obj\Debug\SecondeApplication.pdb
