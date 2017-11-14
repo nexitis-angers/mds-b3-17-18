@@ -27,8 +27,19 @@ namespace QuatriemeApplication
             //InsertCivilite("M.", "Monsieur");
             //InsertCivilite("Mme", "Madame");
             //InsertCivilite("Mle", "Mademoiselle");
-            UpdateCivilite(1, "Mr", "Monsieur");
-            DeleteCivilite(3);
+            //UpdateCivilite(1, "Mr", "Monsieur");
+            //DeleteCivilite(3);
+            GetAllCivilites();
+        }
+
+        static void GetAllCivilites()
+        {
+            var civilites = civiliteRepository.GetAll();
+
+            foreach (var civilite in civilites)
+            {
+                Console.WriteLine($"{civilite.Id}, {civilite.LibelleCourt} {civilite.LibelleLong}");
+            }
         }
 
         static void InsertCivilite(string libelleCourt, string libelleLong)

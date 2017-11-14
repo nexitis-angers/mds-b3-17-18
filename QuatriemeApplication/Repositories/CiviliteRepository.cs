@@ -17,6 +17,51 @@ namespace QuatriemeApplication.Repositories
         }
 
         /// <summary>
+        /// Charge l'ensemble des civilités
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Civilite> GetAll()
+        {
+            SqlCommand selectCommand = new SqlCommand()
+            {
+                CommandText = "SELECT * FROM Civilite;",
+                Connection = this.Connection
+            };
+
+            SqlDataAdapter adapter = new SqlDataAdapter(selectCommand);
+            DataSet dataSet = new DataSet();
+
+            try
+            {
+                Connection.Open();
+                adapter.Fill(dataSet, "Civilite");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            // Chargement de la collection de civilités grâce au résultat de la requête
+            List<Civilite> civilites = new List<Civilite>();
+            foreach (DataRow row in dataSet.Tables["Civilite"].Rows)
+            {
+                civilites.Add(new Civilite()
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    LibelleCourt = row["LibelleCourt"] as string,
+                    LibelleLong = row["LibelleLong"] as string
+                });
+            }
+
+            return civilites;
+        }
+
+
+        /// <summary>
         /// Sauvegarde la civilité en base de données
         /// </summary>
         /// <param name="civilite">civilite à sauvegarder</param>
