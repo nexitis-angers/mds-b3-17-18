@@ -12,10 +12,10 @@ namespace SecondeApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Saisir un choix :");
-            string choix = Console.ReadLine();
+            //Console.WriteLine("Saisir un choix :");
+            //string choix = Console.ReadLine();
 
-            Console.WriteLine($"vous avez saisi {choix}");
+            //Console.WriteLine($"vous avez saisi {choix}");
 
 
 

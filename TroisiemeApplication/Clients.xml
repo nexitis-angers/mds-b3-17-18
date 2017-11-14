@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Clients>
+  <Client>
+    <Nom>Daniel</Nom>
+    <Prenom>Cedric</Prenom>
+  </Client>
+  <Client>
+    <Nom>Doe</Nom>
+    <Prenom>John</Prenom>
+  </Client>
+</Clients>
