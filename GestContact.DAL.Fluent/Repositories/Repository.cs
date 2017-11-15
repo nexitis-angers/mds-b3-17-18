@@ -61,5 +61,33 @@ namespace GestContact.DAL.Fluent.Repositories
                 }
             }
         }
+
+        /// <summary>
+        /// Obtient l'ensemble des objets
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<T> GetAll()
+        {
+            using (ISession session = SessionFactory.OpenSession())
+            {
+                // QueryOver == From en SQL
+                return session.QueryOver<T>().List();
+            }
+        }
+
+        /// <summary>
+        /// Obtient un objet à partir de son identifiant
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static T GetById(int id)
+        {
+            using (ISession session = SessionFactory.OpenSession())
+            {
+                return session.QueryOver<T>() // Clause FROM
+                    .Where(obj => obj.Id == id) // Clause WHERE
+                    .SingleOrDefault(); // OBtient un seul objet ou null si inexistant
+            }
+        }
     }
 }

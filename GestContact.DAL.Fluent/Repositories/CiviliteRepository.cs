@@ -8,56 +8,22 @@ using System.Threading.Tasks;
 
 namespace GestContact.DAL.Fluent.Repositories
 {
-    public class CiviliteRepository : Repository
+    public class CiviliteRepository : Repository<Civilite>
     {
         /// <summary>
-        /// Insère la civilité passée en paramètre
+        /// Obtient une civilité à partir de son libellé court
         /// </summary>
-        /// <param name="civilite"></param>
-        public static void Save(Civilite civilite)
+        /// <param name="libelleCourt"></param>
+        /// <returns></returns>
+        public static Civilite GetByLibelleCourt(string libelleCourt)
         {
-            using (ISession session = SessionFactory.OpenSession())
+            using(ISession session = SessionFactory.OpenSession())
             {
-                using (ITransaction transaction = session.BeginTransaction())
-                {
-                    try
-                    {
-                        session.Save(civilite);
-                        transaction.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
+                return session.QueryOver<Civilite>()
+                    .Where(civilite => civilite.LibelleCourt == libelleCourt)
+                    .SingleOrDefault();
             }
         }
-
-        /// <summary>
-        /// Insère la civilité passée en paramètre
-        /// </summary>
-        /// <param name="civilite"></param>
-        public static void Delete(Civilite civilite)
-        {
-            using (ISession session = SessionFactory.OpenSession())
-            {
-                using (ITransaction transaction = session.BeginTransaction())
-                {
-                    try
-                    {
-                        session.Delete(civilite);
-                        transaction.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
-            }
-        }
-
 
     }
 }
