@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestContactModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Civilite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleCourt" Type="nvarchar" MaxLength="3" />
+          <Property Name="LibelleLong" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="InformationContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeInfo" Type="int" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Adresse1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Adresse2" Type="nvarchar" MaxLength="100" />
+          <Property Name="CodePostal" Type="nvarchar" MaxLength="5" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+          <Property Name="Personne_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateNaissance" Type="datetime" />
+          <Property Name="Civilite_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_InformationContact_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="InformationContact" Type="Self.InformationContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InformationContact">
+              <PropertyRef Name="Personne_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Personne_Civilite">
+          <End Role="Civilite" Type="Self.Civilite" Multiplicity="1" />
+          <End Role="Personne" Type="Self.Personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Civilite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personne">
+              <PropertyRef Name="Civilite_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestContactModelStoreContainer">
+          <EntitySet Name="Civilite" EntityType="Self.Civilite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationContact" EntityType="Self.InformationContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personne" EntityType="Self.Personne" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_InformationContact_Personne" Association="Self.fk_InformationContact_Personne">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="InformationContact" EntitySet="InformationContact" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Personne_Civilite" Association="Self.fk_Personne_Civilite">
+            <End Role="Civilite" EntitySet="Civilite" />
+            <End Role="Personne" EntitySet="Personne" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestContactModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Civilite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleCourt" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="LibelleLong" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personnes" Relationship="Self.fk_Personne_Civilite" FromRole="Civilite" ToRole="Personne" />
+        </EntityType>
+        <EntityType Name="InformationContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeInfo" Type="Int32" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Personne_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personne" Relationship="Self.fk_InformationContact_Personne" FromRole="InformationContact" ToRole="Personne" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateNaissance" Type="DateTime" Precision="3" />
+          <Property Name="Civilite_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Civilite" Relationship="Self.fk_Personne_Civilite" FromRole="Personne" ToRole="Civilite" />
+          <NavigationProperty Name="InformationContacts" Relationship="Self.fk_InformationContact_Personne" FromRole="Personne" ToRole="InformationContact" />
+        </EntityType>
+        <Association Name="fk_Personne_Civilite">
+          <End Role="Civilite" Type="Self.Civilite" Multiplicity="1" />
+          <End Role="Personne" Type="Self.Personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Civilite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personne">
+              <PropertyRef Name="Civilite_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_InformationContact_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="InformationContact" Type="Self.InformationContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InformationContact">
+              <PropertyRef Name="Personne_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestContactEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Civilites" EntityType="Self.Civilite" />
+          <EntitySet Name="InformationContacts" EntityType="Self.InformationContact" />
+          <EntitySet Name="Personnes" EntityType="Self.Personne" />
+          <AssociationSet Name="fk_Personne_Civilite" Association="Self.fk_Personne_Civilite">
+            <End Role="Civilite" EntitySet="Civilites" />
+            <End Role="Personne" EntitySet="Personnes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_InformationContact_Personne" Association="Self.fk_InformationContact_Personne">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="InformationContact" EntitySet="InformationContacts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestContactModelStoreContainer" CdmEntityContainer="GestContactEntities">
+          <EntitySetMapping Name="Civilites">
+            <EntityTypeMapping TypeName="GestContactModel.Civilite">
+              <MappingFragment StoreEntitySet="Civilite">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LibelleCourt" ColumnName="LibelleCourt" />
+                <ScalarProperty Name="LibelleLong" ColumnName="LibelleLong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationContacts">
+            <EntityTypeMapping TypeName="GestContactModel.InformationContact">
+              <MappingFragment StoreEntitySet="InformationContact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeInfo" ColumnName="TypeInfo" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Adresse1" ColumnName="Adresse1" />
+                <ScalarProperty Name="Adresse2" ColumnName="Adresse2" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Personne_id" ColumnName="Personne_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personnes">
+            <EntityTypeMapping TypeName="GestContactModel.Personne">
+              <MappingFragment StoreEntitySet="Personne">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="Civilite_id" ColumnName="Civilite_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

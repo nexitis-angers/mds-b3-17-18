@@ -22,16 +22,24 @@ namespace QuatriemeApplication
 
         static void Main(string[] args)
         {
-            civiliteRepository = new Repositories.CiviliteRepository(connection);
+            //civiliteRepository = new Repositories.CiviliteRepository(connection);
 
             //InsertCivilite("M.", "Monsieur");
             //InsertCivilite("Mme", "Madame");
             //InsertCivilite("Mle", "Mademoiselle");
             //UpdateCivilite(1, "Mr", "Monsieur");
             //DeleteCivilite(3);
-            GetAllCivilites();
+            //GetAllCivilites();
+            //ListCivilites();
+            //GetCivilitesById(1);
+            //UpdateCiviliteInORM(2, "Pr", "Professeur");
+            InsertCiviliteInORM("Me", "Maître");
+            Console.Read();
+
+
         }
 
+        #region ADO.NET
         static void GetAllCivilites()
         {
             var civilites = civiliteRepository.GetAll();
@@ -58,5 +66,51 @@ namespace QuatriemeApplication
         {
             civiliteRepository.DeleteCivilite(id);
         }
+        #endregion
+
+        #region EF
+
+        static void ListCivilites()
+        {
+            using(GestContactEntities entities = new QuatriemeApplication.GestContactEntities())
+            {
+                foreach (var item in entities.Civilites)
+                {
+                    Console.WriteLine($"{item.Id}, {item.LibelleCourt}, {item.LibelleLong}");
+                }
+            }
+        }
+
+        static void GetCivilitesById(int id)
+        {
+            using (GestContactEntities entities = new QuatriemeApplication.GestContactEntities())
+            {
+                var maCivilite = entities.Civilites.SingleOrDefault(civilite => civilite.Id == id);
+               
+            }
+        }
+
+        static void InsertCiviliteInORM(string libelleCourt, string libelleLong)
+        {
+            using (GestContactEntities entities = new QuatriemeApplication.GestContactEntities())
+            {
+                var maCivilite = new QuatriemeApplication.Civilite() { LibelleCourt = libelleCourt, LibelleLong = libelleLong };
+                entities.Civilites.Add(maCivilite);
+                entities.SaveChanges();
+
+            }
+        }
+
+        static void UpdateCiviliteInORM(int id, string libelleCourt, string libelleLong)
+        {
+            using (GestContactEntities entities = new QuatriemeApplication.GestContactEntities())
+            {
+                var maCivilite = entities.Civilites.SingleOrDefault(civilite => civilite.Id == id);
+                maCivilite.LibelleCourt = libelleCourt;
+                maCivilite.LibelleLong = libelleLong;
+                entities.SaveChanges();
+            }
+        }
+        #endregion
     }
 }
