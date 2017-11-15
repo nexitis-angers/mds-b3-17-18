@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Civilite.cs" />
     <Compile Include="Employe.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="InformationContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

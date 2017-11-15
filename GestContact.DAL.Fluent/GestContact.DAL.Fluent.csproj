@@ -58,6 +58,7 @@
     <Compile Include="Maps\InformationContactMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CiviliteRepository.cs" />
+    <Compile Include="Repositories\EmployeRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,12 @@ namespace GestContact.DAL.Fluent.Repositories
                 {
                     try
                     {
-                        session.Save(obj);
+                        if (obj.Id == 0)
+                        {
+                            // On demande à NHibernate de passer l'état de l'objet transient à un état persisté
+                            session.Save(obj);
+                        }
+
                         transaction.Commit();
                     }
                     catch (Exception)
@@ -63,7 +68,7 @@ namespace GestContact.DAL.Fluent.Repositories
         }
 
         /// <summary>
-        /// Obtient l'ensemble des objets
+        /// Obtient l'ensemble des objets 
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<T> GetAll()
@@ -71,10 +76,11 @@ namespace GestContact.DAL.Fluent.Repositories
             using (ISession session = SessionFactory.OpenSession())
             {
                 // QueryOver == From en SQL
-                return session.QueryOver<T>().List();
+                var civilites = session.QueryOver<T>().List();
+                return civilites;
             }
         }
-
+        
         /// <summary>
         /// Obtient un objet à partir de son identifiant
         /// </summary>

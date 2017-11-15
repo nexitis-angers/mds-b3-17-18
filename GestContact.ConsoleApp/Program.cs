@@ -15,8 +15,19 @@ namespace GestContact.ConsoleApp
         {
             InitDatabase.CreateSessionFactory("Data Source=CEDRIC-DEV;Initial Catalog=GestContact;Integrated Security=true;");
 
-            Civilite civilite = new Civilite() { LibelleCourt = "M.", LibelleLong = "Monsieur" };
-            CiviliteRepository.Save(civilite);
+            // 1er exemple, sauvegarde de la civilité
+            //Civilite civilite = new Civilite() { LibelleCourt = "M.", LibelleLong = "Monsieur" };
+            //CiviliteRepository.Save(civilite);
+
+
+            //var civilite = CiviliteRepository.GetById(1);
+            //civilite.LibelleLong = "Professeur";
+            //CiviliteRepository.Update(civilite);
+
+            //CiviliteRepository.Delete(civilite);
+
+            var personnes = EmployeRepository.GetEmployesByCivilite("M.");
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestContact.Entities
 {
-    public class Civilite : Entity  IComparable<Civilite>
+    public class Civilite : Entity,  IComparable<Civilite>
     {
         #region Properties
         /// <summary>

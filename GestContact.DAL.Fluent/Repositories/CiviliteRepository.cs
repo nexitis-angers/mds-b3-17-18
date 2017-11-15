@@ -17,7 +17,7 @@ namespace GestContact.DAL.Fluent.Repositories
         /// <returns></returns>
         public static Civilite GetByLibelleCourt(string libelleCourt)
         {
-            using(ISession session = SessionFactory.OpenSession())
+            using (ISession session = SessionFactory.OpenSession())
             {
                 return session.QueryOver<Civilite>()
                     .Where(civilite => civilite.LibelleCourt == libelleCourt)
@@ -25,5 +25,20 @@ namespace GestContact.DAL.Fluent.Repositories
             }
         }
 
+        /// <summary>
+        /// Mise à jour de la civilité
+        /// </summary>
+        /// <param name="updatingCivilite"></param>
+        public static void Update(Civilite updatingCivilite)
+        {
+            using (ISession session = SessionFactory.OpenSession())
+            {
+                Civilite oldCivilite = session.Get<Civilite>(updatingCivilite.Id);
+                oldCivilite.LibelleCourt = updatingCivilite.LibelleCourt;
+                oldCivilite.LibelleLong = updatingCivilite.LibelleLong;
+                session.Flush();
+            }
+
+        }
     }
 }
