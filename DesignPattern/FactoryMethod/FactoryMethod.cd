@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DesignPattern.FactoryMethod.Factory" Collapsed="true">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>FactoryMethod\Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.FactoryMethod.ImportFichierCSV" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FactoryMethod\ImportFichierCSV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.FactoryMethod.ImportFichierFactory" Collapsed="true">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>FactoryMethod\ImportFichierFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.FactoryMethod.ImportFichierJSON" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FactoryMethod\ImportFichierJSON.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.FactoryMethod.ImportFichierXML" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FactoryMethod\ImportFichierXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPattern.FactoryMethod.TraitementAbstrait" Collapsed="true">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FactoryMethod\TraitementAbstrait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

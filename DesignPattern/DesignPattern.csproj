@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{929413A2-66AC-496F-8FAE-5DD48F94201A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{BFF7A0E8-F1EC-4754-8620-671A7AF482D3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GestContact.Entities</RootNamespace>
-    <AssemblyName>GestContact.Entities</AssemblyName>
+    <RootNamespace>DesignPattern</RootNamespace>
+    <AssemblyName>DesignPattern</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,14 +43,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Civilite.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="Employe.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="InformationContact.cs" />
-    <Compile Include="MonEntity1.cs" />
+    <Compile Include="AbstractFactory\AbstractFactory.cs" />
+    <Compile Include="AbstractFactory\Carosserie\AbstractCarosserie.cs" />
+    <Compile Include="AbstractFactory\Carosserie\CarosseMotoRoute.cs" />
+    <Compile Include="AbstractFactory\Carosserie\CarosserieCross.cs" />
+    <Compile Include="AbstractFactory\Carosserie\CarosserieMotoPiste.cs" />
+    <Compile Include="AbstractFactory\Client.cs" />
+    <Compile Include="AbstractFactory\ConcreteFactoryMotoCross.cs" />
+    <Compile Include="AbstractFactory\LieuRoulage\AbstractLieuRoulage.cs" />
+    <Compile Include="AbstractFactory\LieuRoulage\Chemin.cs" />
+    <Compile Include="AbstractFactory\LieuRoulage\Piste.cs" />
+    <Compile Include="AbstractFactory\LieuRoulage\Route.cs" />
+    <Compile Include="AbstractFactory\Moteur\AbstractMoteur.cs" />
+    <Compile Include="AbstractFactory\Moteur\MoteurCross.cs" />
+    <Compile Include="AbstractFactory\Moteur\MoteurPiste.cs" />
+    <Compile Include="AbstractFactory\Moteur\MoteurRoute.cs" />
+    <Compile Include="AbstractFactory\Moto\AbstractMoto.cs" />
+    <Compile Include="AbstractFactory\Moto\MotoCross.cs" />
+    <Compile Include="FactoryMethod\Factory.cs" />
+    <Compile Include="FactoryMethod\ImportFichierXML.cs" />
+    <Compile Include="FactoryMethod\ImportFichierFactory.cs" />
+    <Compile Include="FactoryMethod\ImportFichierCSV.cs" />
+    <Compile Include="FactoryMethod\ImportFichierJSON.cs" />
+    <Compile Include="FactoryMethod\TraitementAbstrait.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Singleton\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="FactoryMethod\FactoryMethod.cd" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
