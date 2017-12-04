@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Civilite.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Employe.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="InformationContact.cs" />
