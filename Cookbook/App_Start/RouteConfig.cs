@@ -15,7 +15,7 @@ namespace Cookbook
 
             routes.MapRoute(
                 name:"DefaultWithCulture",
-                url:"{lang}/{controller}/{home}/{id}",
+                url:"{lang}/{controller}/{action}/{id}",
                 constraints:new { lang=@"(\w{2})|(\w{2}-\w{2})" },
                 defaults:new { lang="fr", controller = "Home", action = "Index", id = UrlParameter.Optional }
                 );
