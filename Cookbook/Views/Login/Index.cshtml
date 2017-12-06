@@ -1,0 +1,29 @@
+﻿@using Cookbook.Resources.Login
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@model Cookbook.Models.Login.LoginVM
+
+<h2 class="page-header">@Index.PageHeader</h2>
+
+
+@using (Html.BeginForm("Login", "Login"))
+{
+    <div class="row form-group">
+        @Html.LabelFor(x => x.Email, new { @class = "control-label col-sm-2" })
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control col-sm-10" })
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="row form-group">
+        @Html.LabelFor(x => x.Password, new { @class = "control-label col-sm-2" })
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control col-sm-10" })
+        @Html.ValidationMessageFor(x => x.Password)
+   )
+    </div>
+    <div class="row form-group">
+        <input type="submit" value="@Index.SubmitButton" />
+    </div>
+}
