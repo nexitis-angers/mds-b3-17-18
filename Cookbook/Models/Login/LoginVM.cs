@@ -20,6 +20,10 @@ namespace Cookbook.Models.Login
         /// </summary>
         [Required]
         public string Password { get; set; }
+        /// <summary>
+        /// Affecte ou obtient l'url de retour
+        /// </summary>
+        public string ReturnUrl { get; set; }
         #endregion
     }
 }

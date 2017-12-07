@@ -15,5 +15,11 @@ namespace Cookbook.Controllers
             ViewBag.MonMessage = "Test";
             return View();
         }
+
+        [Authorize()]
+        public ActionResult PageSecurisee()
+        {
+            return View();
+        }
     }
 }

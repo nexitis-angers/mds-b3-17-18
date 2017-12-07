@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestContactModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Civilite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibelleCourt" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="LibelleLong" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="30" />
+          <Property Name="Civilite_id" Type="int" Nullable="false" />
+          <Property Name="Matricule" Type="nvarchar" MaxLength="10" />
+          <Property Name="Profile_id" Type="int" />
+        </EntityType>
+        <EntityType Name="InformationContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="10" />
+          <Property Name="TypeInformationContact" Type="int" Nullable="false" />
+          <Property Name="Employe_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Employe_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="Profile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK4571E59DD2ED3073">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="InformationContact" Type="Self.InformationContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InformationContact">
+              <PropertyRef Name="Employe_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKD48B895F4C7C39CB">
+          <End Role="Civilite" Type="Self.Civilite" Multiplicity="1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Civilite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="Civilite_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestContactModelStoreContainer">
+          <EntitySet Name="Civilite" EntityType="Self.Civilite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationContact" EntityType="Self.InformationContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Employe_Profile" Association="Self.fk_Employe_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+          <AssociationSet Name="FK4571E59DD2ED3073" Association="Self.FK4571E59DD2ED3073">
+            <End Role="Employe" EntitySet="Employe" />
+            <End Role="InformationContact" EntitySet="InformationContact" />
+          </AssociationSet>
+          <AssociationSet Name="FKD48B895F4C7C39CB" Association="Self.FKD48B895F4C7C39CB">
+            <End Role="Civilite" EntitySet="Civilite" />
+            <End Role="Employe" EntitySet="Employe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestContactModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Civilite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleCourt" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LibelleLong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employes" Relationship="Self.FKD48B895F4C7C39CB" FromRole="Civilite" ToRole="Employe" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Civilite_id" Type="Int32" Nullable="false" />
+          <Property Name="Matricule" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Profile_id" Type="Int32" />
+          <NavigationProperty Name="Civilite" Relationship="Self.FKD48B895F4C7C39CB" FromRole="Employe" ToRole="Civilite" />
+          <NavigationProperty Name="Profile" Relationship="Self.fk_Employe_Profile" FromRole="Employe" ToRole="Profile" />
+          <NavigationProperty Name="InformationContacts" Relationship="Self.FK4571E59DD2ED3073" FromRole="Employe" ToRole="InformationContact" />
+        </EntityType>
+        <EntityType Name="InformationContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TypeInformationContact" Type="Int32" Nullable="false" />
+          <Property Name="Employe_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employe" Relationship="Self.FK4571E59DD2ED3073" FromRole="InformationContact" ToRole="Employe" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employes" Relationship="Self.fk_Employe_Profile" FromRole="Profile" ToRole="Employe" />
+        </EntityType>
+        <Association Name="FKD48B895F4C7C39CB">
+          <End Role="Civilite" Type="Self.Civilite" Multiplicity="1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Civilite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="Civilite_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Employe_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employe">
+              <PropertyRef Name="Profile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK4571E59DD2ED3073">
+          <End Role="Employe" Type="Self.Employe" Multiplicity="1" />
+          <End Role="InformationContact" Type="Self.InformationContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InformationContact">
+              <PropertyRef Name="Employe_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestContactEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Civilites" EntityType="Self.Civilite" />
+          <EntitySet Name="Employes" EntityType="Self.Employe" />
+          <EntitySet Name="InformationContacts" EntityType="Self.InformationContact" />
+          <EntitySet Name="Profiles" EntityType="Self.Profile" />
+          <AssociationSet Name="FKD48B895F4C7C39CB" Association="Self.FKD48B895F4C7C39CB">
+            <End Role="Civilite" EntitySet="Civilites" />
+            <End Role="Employe" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Employe_Profile" Association="Self.fk_Employe_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Employe" EntitySet="Employes" />
+          </AssociationSet>
+          <AssociationSet Name="FK4571E59DD2ED3073" Association="Self.FK4571E59DD2ED3073">
+            <End Role="Employe" EntitySet="Employes" />
+            <End Role="InformationContact" EntitySet="InformationContacts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestContactModelStoreContainer" CdmEntityContainer="GestContactEntities">
+          <EntitySetMapping Name="Civilites">
+            <EntityTypeMapping TypeName="GestContactModel.Civilite">
+              <MappingFragment StoreEntitySet="Civilite">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LibelleCourt" ColumnName="LibelleCourt" />
+                <ScalarProperty Name="LibelleLong" ColumnName="LibelleLong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employes">
+            <EntityTypeMapping TypeName="GestContactModel.Employe">
+              <MappingFragment StoreEntitySet="Employe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Civilite_id" ColumnName="Civilite_id" />
+                <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+                <ScalarProperty Name="Profile_id" ColumnName="Profile_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationContacts">
+            <EntityTypeMapping TypeName="GestContactModel.InformationContact">
+              <MappingFragment StoreEntitySet="InformationContact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="TypeInformationContact" ColumnName="TypeInformationContact" />
+                <ScalarProperty Name="Employe_id" ColumnName="Employe_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="GestContactModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

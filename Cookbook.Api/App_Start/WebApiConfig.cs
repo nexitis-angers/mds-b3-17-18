@@ -10,6 +10,8 @@ namespace Cookbook.Api
         public static void Register(HttpConfiguration config)
         {
             // Configuration et services API Web
+            // Suppression du formatter XML pour forcer à utiliser le formatter JSON
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             // Itinéraires de l'API Web
             config.MapHttpAttributeRoutes();

@@ -18,18 +18,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/Register">Inscription</a></li>
-                    <li>@Html.ActionLink("Connexion","Index","Login")</li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Connexion", "Index", "Login")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Déconnexion", "LogOut", "Login")</li>
+                    }
+                    <li>@Html.ActionLink("Page sécurisée", "PageSecurisee", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="container body-content">
+        <p>@User.Identity.Name</p>
+
         @RenderBody()
         <hr />
         <footer>
